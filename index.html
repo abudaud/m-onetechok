@@ -2,25 +2,50 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>M-One Tech Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M-One Technology</title>
+    
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#007bff">
+    <link rel="apple-touch-icon" href="icon-192.png">
+
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background-color: #f0f4ff; }
-        iframe { width: 100%; height: 100%; border: none; }
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f4ff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #007bff;
+        }
+        .loader {
+            text-align: center;
+        }
     </style>
-</head>
-<body>
-    <iframe src="https://sites.google.com/view/m-one-technology/"></iframe>
 
     <script>
+        // 1. Registrasi Service Worker (Wajib PWA)
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js');
+                navigator.serviceWorker.register('sw.js')
+                .then(() => console.log("SW Registered"))
+                .catch(err => console.log("SW Failed", err));
             });
         }
-    </script>
-</body>
 
+        // 2. Redirect ke Google Sites Bapak
+        // Kami tambahkan sedikit delay agar proses registrasi PWA selesai
+        setTimeout(() => {
+            window.location.href = "https://sites.google.com/view/m-one-technology/";
+        }, 800); 
+    </script>
+</head>
+<body>
+    <div class="loader">
+        <h3>M-One Technology</h3>
+        <p>Sedang menyiapkan dashboard...</p>
+    </div>
+</body>
 </html>
